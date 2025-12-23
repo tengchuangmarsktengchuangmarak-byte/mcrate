@@ -1,186 +1,614 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title> McDonald's Gift Card</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unlock Your McDonald's Reward</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Font: Horizon Type (AcherusFeral-Bold) */
-    @font-face {
-      font-family: 'Horizon Type';
-      src: url('acherus/Horizon Type - AcherusFeral-Bold.otf') format('opentype');
-      font-weight: 900;
-      font-style: normal;
-      font-display: swap;
+    :root {
+      --primary: #DA291C;
+      --secondary: #FFC72C;
+      --dark: #27251F;
+      --light: #FFFFFF;
+      --gray: #F5F5F5;
+      --text: #333333;
+      --success: #4CAF50;
     }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; }
-
-    body {
-      font-family: 'Horizon Type', -apple-system, BlinkMacSystemFont, sans-serif;
-      font-weight: 900;
-      background: #fcfcfc;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      padding: 30px 0 0 0;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      color: #FFD600;
-    }
-
-    .logo { 
-      width: 200px; 
-      margin-bottom: 20px; 
-      object-fit: contain;
-    }
-
-    .title {
-      font-family: 'Horizon Type', sans-serif;
-      font-size: 24px;
-      line-height: 1.15;
-      color: hsl(0, 0%, 4%);
-      text-shadow: 0 4px 18px rgba(0,113,206,0.18), 0 1px 0 #fff;
-      margin-bottom: 40px;
-      text-align: center;
-      letter-spacing: 1.5px;
-    }
-    .title .line1 { display: block; }
-    .title .line2 { display: block; margin-left: 2px; }
-
-    .btn {
-      font-family: 'Horizon Type', sans-serif;
-      background: #f70c1d;
-      color: #fff;
-      font-size: 20px;
-      padding: 16px 56px;
-      border: none;
-      border-radius: 50px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.22);
-      cursor: pointer;
-      transition: transform .18s ease, box-shadow .18s ease;
-      margin-bottom: 30px;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .btn:hover { 
-      transform: translateY(-3px); 
-      box-shadow: 0 10px 25px rgba(221, 5, 5, 0.575); 
-    }
-
-    .steps {
-      background: #fff;
-      width: 88%;
-      max-width: 420px;
-      padding: 40px 15px;
-      border-radius: 20px;
-      box-shadow: 0 8px 28px rgba(0,0,0,0.16);
-      font-size: 22.5px;
-      color: #222;
-      margin-bottom: 0;
-      text-align: left;
-    }
-    .step { 
-      display: flex; 
-      margin-bottom: 17px;
-    }
-    .step:last-child { margin-bottom: 0; }
     
-    .num {
-      background: #f70c1d;
-      color: #fff;
-      width: 34px; 
-      height: 34px;
-      border-radius: 50%;
-      display: flex; 
-      align-items: center; 
-      justify-content: center;
-      font-size: 23px; 
-      margin-right: 16px; 
-      flex-shrink: 0;
+    * { 
+      box-sizing: border-box; 
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
     }
-    .bold { font-weight: 900; }
-    .amount { color: #f70c1d; font-weight: 900; }
-
-    .giftcard {
-      width: 70%;
-      max-width: 320px;
-      border-radius: 18px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.18);
-      margin-top: auto;
-      margin-bottom: 0;
+    
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--light);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 0.1rem 0;
+      text-align: center;
+      box-shadow: 0 2px 05px rgba(0,0,0,0.1);
+    }
+    
+    .logo {
+      max-width: 110px;
+      margin: 0 auto;
       display: block;
     }
-
-    .warning {
-      background: #fff8e1;
-      color: #b87400;
-      padding: 16px;
-      border-radius: 12px;
-      font-size: 15px;
-      font-weight: 900;
-      width: 88%;
-      max-width: 420px;
+    
+    .hero {
       text-align: center;
+      padding: 2rem 0;
+      background: linear-gradient(135deg, #ffeb3b, #ff9800);
+      color: white;
+      margin-bottom: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
-
-    @media (max-width: 600px) {
-      body { padding: 15px 0 0 0; }
-      .title { font-size: 32px; letter-spacing: 0.5px; text-shadow: none; margin-bottom: 20px; }
-      .logo { margin-bottom: 15px; }
-      .btn { font-size: 22px; padding: 12px 32px; margin-bottom: 20px; }
-      .steps { font-size: 18px; padding: 18px 14px; margin-bottom: 0; }
+    
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
     }
+    
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto 1.5rem;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+    
+    .card h2 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .card h2 i {
+      color: var(--secondary);
+    }
+    
+    .step {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+      align-items: flex-start;
+    }
+    
+    .step-number {
+      background: var(--primary);
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+    
+    .step-content h3 {
+      margin-bottom: 0.3rem;
+      color: var(--dark);
+    }
+    
+    .step-content p {
+      color: #666;
+      font-size: 0.95rem;
+    }
+    
+    /* Live Feed Styles */
+    .live-feed {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-left: 4px solid var(--primary);
+    }
+    
+    .live-feed-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .live-feed-header h2 {
+      color: var(--primary);
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .live-indicator {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: #ff4444;
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    
+    .live-indicator::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: white;
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+    
+    .feed-container {
+      max-height: 300px;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+    
+    .feed-item {
+      background: white;
+      padding: 0.8rem;
+      margin-bottom: 0.8rem;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      animation: slideIn 0.3s ease-out;
+    }
+    
+    .feed-item img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    
+    .feed-content h4 {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--dark);
+    }
+    
+    .feed-content p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: #666;
+    }
+    
+    .feed-time {
+      margin-left: auto;
+      font-size: 0.75rem;
+      color: #999;
+    }
+    
+    /* Button Styles */
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      box-shadow: 0 4px 15px rgba(218, 41, 28, 0.3);
+    }
+    
+    .btn:hover {
+      background: #c11f14;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(218, 41, 28, 0.4);
+    }
+    
+    .btn-block {
+      display: block;
+      width: 100%;
+    }
+    
+    .btn-yellow {
+      background: var(--secondary);
+      color: var(--dark);
+    }
+    
+    .btn-yellow:hover {
+      background: #e6b400;
+    }
+    
+    /* FAQ Section */
+    .faq-section {
+      margin: 2rem 0;
+    }
+    
+    .faq-item {
+      border-bottom: 1px solid #eee;
+      margin-bottom: 0.5rem;
+      overflow: hidden;
+    }
+    
+    .faq-q {
+      padding: 1rem 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      color: var(--dark);
+    }
+    
+    .faq-q i {
+      transition: transform 0.3s ease;
+    }
+    
+    .faq-item.active .faq-q i {
+      transform: rotate(180deg);
+    }
+    
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out, padding 0.3s ease;
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    
+    .faq-item.active .faq-a {
+      max-height: 300px;
+      padding-bottom: 1rem;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 1rem 0;
+      flex-wrap: wrap;
+    }
+    
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: var(--secondary);
+    }
+    
+    .copyright {
+      color: #999;
+      font-size: 0.8rem;
+      margin-top: 1rem;
+    }
+    
+    /* Animations */
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+    
+    @keyframes slideIn {
+      from { 
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+      
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .card {
+        padding: 1.2rem;
+      }
+      
+      .step {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      
+      .step-number {
+        margin: 0 auto;
+      }
+      
+      .step-content {
+        text-align: center;
+      }
+    }
+    .cta:active { transform: scale(0.98); }
 
-    /* Reduce gap between steps and giftcard on short/phone viewports */
-    @media (max-width: 600px), (max-height: 700px) {
-      .giftcard { margin-top: 50px; }
-      body { padding-bottom: 03px; }
+    .disclaimer {
+      font-size: 10px;
+      color: #777;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-
-  <img src="logo.jpg" alt="Walmart logo" class="logo">
-
-  <div class="title">
-    <span class="line1">Claim Your $100 McDonald's Gift Card </span>
-    <span class="line2"> </span>
-  </div>
-  </div>
-
-  <a href="https://glctrk.org/aff_c?offer_id=1947&aff_id=3471" target="_blank" rel="noopener noreferrer" class="btn">
-    Get Started
-  </a>
-
-  <div class="steps" aria-label="How it works">
-    <div class="step">
-      <div class="num">1</div>
-      <div>Click the  <span class="bold">Button Above ⬆️ </span></div>
+  <header style="background: white; padding: 1.5rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+    <div class="container" style="text-align: center; margin-bottom: 1rem;">
+      <img src="logo.jpg" alt="McDonald's Logo" style="width: 150px; height: auto; margin: 0 auto 1rem; display: block;">
     </div>
-    <div class="step">
-      <div class="num">2</div>
-      <div>Enter your <span class="bold">email</span> & Basic Info✍🏻  </div>
+    <div class="container">
+      <h1 style="text-align: center; color: #DA291C; margin: 0; font-size: 1.8rem; font-weight: 700; line-height: 1.3; padding: 0 1rem;">
+        Complete the steps below to unlock your <span style="color: #000;">McDonald's Reward</span>
+      </h1>
     </div>
-    <div class="step">
-      <div class="num">3</div>
-      <div>Complete the survey ✅ </div>
-    </div>
-    <div class="step">
-      <div class="num">4</div>
-      <div>Complete recommended deals✅ ( Important ) </div>
-    </div>
-    <div class="step">
-      <div class="num">5</div>
-      <div> Receive Your Gift card!🎉 </div>
-    </div>
-  </div>
+  </header>
 
-  <!-- Gift card image at the end of the landing page -->
-  <img src="giftcard.png" alt="Costco Gift Card" class="giftcard">
 
+  <main class="container">
+
+    <section class="card" style="padding: 20px;">
+      <h2 style="color: #333; font-size: 22px; margin-bottom: 20px; text-align: center; display: flex; justify-content: center; align-items: center; gap: 10px;">
+        <i class="fas fa-rocket" style="color: var(--primary);"></i>
+        <span>Quick Start Guide</span>
+      </h2>
+      
+      <ul style="list-style: none; padding: 0; margin: 0;">
+        <li style="display: flex; align-items: flex-start; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
+          <div style="margin-right: 15px; color: var(--primary);">
+            <i class="fas fa-check-circle" style="font-size: 20px;"></i>
+          </div>
+          <div>
+            <h3 style="margin: 0 0 5px 0; font-size: 16px; color: #333; font-weight: 600;">Complete 3-4 simple Offers</h3>
+            <p style="margin: 0; font-size: 14px; color: #666;">Earn Maximum Reward</p>
+          </div>
+        </li>
+        
+        <li style="display: flex; align-items: flex-start; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
+          <div style="margin-right: 15px; color: var(--primary);">
+            <i class="fas fa-check-circle" style="font-size: 20px;"></i>
+          </div>
+          <div>
+            <h3 style="margin: 0 0 5px 0; font-size: 16px; color: #333; font-weight: 600;">Enter valid Email Address</h3>
+            <p style="margin: 0; font-size: 14px; color: #666;">For Confirmation and updates</p>
+          </div>
+        </li>
+        
+        <li style="display: flex; align-items: flex-start;">
+          <div style="margin-right: 15px; color: var(--primary);">
+            <i class="fas fa-check-circle" style="font-size: 20px;"></i>
+          </div>
+          <div>
+            <h3 style="margin: 0 0 5px 0; font-size: 16px; color: #333; font-weight: 600;">Must be 18 years old</h3>
+            <p style="margin: 0; font-size: 14px; color: #666;">Required</p>
+          </div>
+        </li>
+      </ul>
+      <a href="https://glctrk.org/aff_c?offer_id=1947&aff_id=3471" target="_blank" class="btn" style="display: block; text-align: center; margin: 25px auto 0; background-color: #ffc72c; color: #000; font-weight: 600; padding: 12px 32px; border-radius: 50px; text-decoration: none; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); font-size: 16px; text-transform: none; letter-spacing: 0.5px; box-shadow: 0 6px 12px rgba(0,0,0,0.15); border: none; cursor: pointer; max-width: 300px; transform: translateY(0);">
+         Start Now ➡️
+      </a>
+      <style>
+        .btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 20px rgba(0,0,0,0.15), 0 3px 6px rgba(0,0,0,0.1);
+        }
+      </style>
+    </section>
+
+    </section>
+
+    <!-- Live Feed Section -->
+    <section class="live-feed">
+      <div class="live-feed-header">
+        <h2><i class="fas fa-bolt"></i> Live Updates</h2>
+        <div class="live-indicator">LIVE</div>
+      </div>
+      <div class="feed-container" id="liveFeed">
+        <!-- Feed items will be added dynamically by JavaScript -->
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <div class="card" style="max-width: 600px; margin: 0 auto;">
+        <div class="faq-item" style="border: 1px solid #eee; border-radius: 8px; margin-bottom: 10px; overflow: hidden;">
+          <div class="faq-q" style="padding: 15px; background: #f9f9f9; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+            <span>How long do the offers take?</span>
+            <i class="fas fa-chevron-down" style="transition: transform 0.3s ease;"></i>
+          </div>
+          <div class="faq-a" style="padding: 0 15px; max-height: 0; overflow: hidden; transition: all 0.3s ease; font-size: 14px; color: #555; line-height: 1.5;">
+            <p style="padding: 10px 0 15px;">Most offers take around 10-20 minutes to complete.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item" style="border: 1px solid #eee; border-radius: 8px; overflow: hidden;">
+          <div class="faq-q" style="padding: 15px; background: #f9f9f9; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+            <span>What kind of offers are these?</span>
+            <i class="fas fa-chevron-down" style="transition: transform 0.3s ease;"></i>
+          </div>
+          <div class="faq-a" style="padding: 0 15px; max-height: 0; overflow: hidden; transition: all 0.3s ease; font-size: 14px; color: #555; line-height: 1.5;">
+            <p style="padding: 10px 0 15px;">Simple actions like app installs, trials, or short surveys.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+  </main>
+
+
+  <script>
+    // Toggle FAQ items with smooth animation
+    document.querySelectorAll('.faq-q').forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.parentNode;
+        const answer = question.nextElementSibling;
+        const icon = question.querySelector('i');
+        
+        // Toggle active class
+        item.classList.toggle('active');
+        
+        // Toggle answer visibility with animation
+        if (item.classList.contains('active')) {
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          answer.style.padding = '0 15px 15px';
+          icon.style.transform = 'rotate(180deg)';
+        } else {
+          answer.style.maxHeight = '0';
+          answer.style.padding = '0 15px';
+          icon.style.transform = 'rotate(0)';
+        }
+        
+        // Close other open FAQs
+        document.querySelectorAll('.faq-item').forEach(otherItem => {
+          if (otherItem !== item && otherItem.classList.contains('active')) {
+            const otherAnswer = otherItem.querySelector('.faq-a');
+            const otherIcon = otherItem.querySelector('.faq-q i');
+            otherItem.classList.remove('active');
+            otherAnswer.style.maxHeight = '0';
+            otherAnswer.style.padding = '0 15px';
+            otherIcon.style.transform = 'rotate(0)';
+          }
+        });
+      });
+    });
+
+    // Open first FAQ by default
+    document.querySelector('.faq-item .faq-q').click();
+
+    // Live Feed Functionality
+    const liveFeed = document.getElementById('liveFeed');
+    const names = ['Alex', 'Jamie', 'Taylor', 'Jordan', 'Casey', 'Riley', 'Morgan', 'Quinn'];
+    const cities = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'Philadelphia', 'San Antonio', 'San Diego'];
+    
+    // Function to generate a random time ago string
+    function getTimeAgo() {
+      const minutes = Math.floor(Math.random() * 60);
+      if (minutes === 0) return 'just now';
+      if (minutes === 1) return '1 minute ago';
+      return `${minutes} minutes ago`;
+    }
+    
+    // Function to generate a random user avatar
+    function getRandomAvatar() {
+      const gender = Math.random() > 0.5 ? 'men' : 'women';
+      const id = Math.floor(Math.random() * 50) + 1;
+      return `https://randomuser.me/api/portraits/${gender}/${id}.jpg`;
+    }
+    
+    // Function to add a new feed item
+    function addFeedItem() {
+      const name = names[Math.floor(Math.random() * names.length)];
+      const city = cities[Math.floor(Math.random() * cities.length)];
+      const timeAgo = getTimeAgo();
+      const avatar = getRandomAvatar();
+      
+      const feedItem = document.createElement('div');
+      feedItem.className = 'feed-item';
+      feedItem.innerHTML = `
+        <img src="${avatar}" alt="${name}">
+        <div class="feed-content">
+          <h4>${name} from ${city}</h4>
+          <p>Successfully claimed their $100 McDonald's Gift Card!</p>
+        </div>
+        <span class="feed-time">${timeAgo}</span>
+      `;
+      
+      // Add the new item at the top
+      if (liveFeed.firstChild) {
+        liveFeed.insertBefore(feedItem, liveFeed.firstChild);
+      } else {
+        liveFeed.appendChild(feedItem);
+      }
+      
+      // Limit the number of items
+      if (liveFeed.children.length > 10) {
+        liveFeed.removeChild(liveFeed.lastChild);
+      }
+    }
+    
+    // Add initial feed items
+    for (let i = 0; i < 5; i++) {
+      // Delay each item slightly for a staggered effect
+      setTimeout(addFeedItem, i * 500);
+    }
+    
+    // Add a new item every 5-15 seconds
+    setInterval(() => {
+      addFeedItem();
+    }, Math.floor(Math.random() * 10000) + 5000);
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId !== '#') {
+          document.querySelector(targetId).scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
